@@ -2,10 +2,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
     justify-content: center;
     font-family: Tahoma, sans-serif;
-    background-image:url(./assets/yugiOh-background.webp); ;
+    background-image: url(./assets/yugiOh-background.webp);
+    ;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -20,6 +21,7 @@ body {
     align-items: center;
     margin-bottom: -70px;
 }
+
 .yugioh-logo {
     width: 400px;
 }
@@ -28,14 +30,14 @@ h3 {
     margin: 0;
     font-size: 1.5em;
     text-align: center;
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     text-shadow: 1px 1px 2px black;
 }
 
 p {
     margin: 1px 0px 0px 0px;
     font-size: 1.1em;
-    color:black;
+    color: black;
 }
 
 .btn-container {
@@ -48,7 +50,38 @@ p {
     /* background: rgba(183, 221, 251, 0.488); */
     border-radius: 10px;
 }
+.previousBtn,
+.nextBtn {
+    margin-right: 10px;
+    background-image: linear-gradient(-180deg, #37e2bd 0%, #069177 100%);
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    width: 140px;
+    border: 0;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
 
+.previousBtn:hover,
+.nextBtn:hover {
+    background-image: linear-gradient(-180deg, #586252 0%, #1f201f 100%);
+}
+
+@media (min-width: 768px) {
+
+    .previousBtn,
+    .nextBtn {
+        padding: 1rem 2rem;
+    }
+}
 .cards-container {
     display: flex;
     flex-direction: column;
