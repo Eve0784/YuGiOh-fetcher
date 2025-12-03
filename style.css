@@ -49,10 +49,11 @@ p {
     padding: 1px;
     /* background: rgba(183, 221, 251, 0.488); */
     border-radius: 10px;
+
 }
 .previousBtn,
 .nextBtn {
-    margin-right: 10px;
+
     background-image: linear-gradient(-180deg, #37e2bd 0%, #069177 100%);
     border-radius: .5rem;
     box-sizing: border-box;
@@ -81,6 +82,20 @@ p {
     .nextBtn {
         padding: 1rem 2rem;
     }
+}
+
+.page-info {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    width: 100px;
+    height: 50px;
+    background-color: #ffffff77;
+
 }
 .cards-container {
     display: flex;

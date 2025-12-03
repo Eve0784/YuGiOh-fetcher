@@ -1,5 +1,8 @@
 const fetcher = new DataFetcher();
-fetcher.getData().then(displayYugiOhCards);
+fetcher.getData().then(data => {
+    displayYugiOhCards(data);
+    updatePageInfo();
+});
 
 function displayYugiOhCards(yugiOhCardsArray) {
 
@@ -73,15 +76,24 @@ function displayYugiOhCards(yugiOhCardsArray) {
         yugiOhCont.appendChild(cardDiv);
     }
 }
-
+function updatePageInfo() {
+    const pageInfo = document.getElementById("page-info");
+    pageInfo.textContent = fetcher.current_page + '/' + fetcher.total_pages;
+}
 const previousButton = document.getElementById("previous-btn");
 previousButton.addEventListener("click", previousButtonClicked)
 function previousButtonClicked() {
-    fetcher.previousPage().then(displayYugiOhCards);
+  fetcher.previousPage().then(data => {
+        displayYugiOhCards(data);
+        updatePageInfo();
+    });
 }
 
 const nextButton = document.getElementById("next-btn");
 nextButton.addEventListener("click", nextButtonClicked)
 function nextButtonClicked() {
-    fetcher.nextPage().then(displayYugiOhCards);
+      fetcher.nextPage().then(data => {
+        displayYugiOhCards(data);
+        updatePageInfo();
+    });
 }
