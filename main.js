@@ -2,6 +2,7 @@ const fetcher = new DataFetcher();
 fetcher.getData().then(data => {
     displayYugiOhCards(data);
     updatePageInfo();
+    updateButtons();
 });
 
 function displayYugiOhCards(yugiOhCardsArray) {
@@ -80,20 +81,40 @@ function updatePageInfo() {
     const pageInfo = document.getElementById("page-info");
     pageInfo.textContent = fetcher.current_page + '/' + fetcher.total_pages;
 }
-const previousButton = document.getElementById("previous-btn");
-previousButton.addEventListener("click", previousButtonClicked)
-function previousButtonClicked() {
-  fetcher.previousPage().then(data => {
-        displayYugiOhCards(data);
-        updatePageInfo();
-    });
+
+//-------------------------- Pagination Buttons --------------------------//
+function updateButtons() {
+    const prevBtn = document.getElementById("previous-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    // -----------------Prima pagina → toglie il bottone Previous -----------------//
+    if (fetcher.current_page === 1) {
+        prevBtn.style.display = 'none';
+    } else {
+        prevBtn.style.display = 'inline-block';
+    }
+
+    //------------------ ultima pagina → toglie il bottone Next ------------------//
+    if (fetcher.current_page === fetcher.total_pages) {
+        nextBtn.display = 'none';
+    } else {
+        nextBtn.style.display = 'inline-block';
+    }
 }
 
-const nextButton = document.getElementById("next-btn");
-nextButton.addEventListener("click", nextButtonClicked)
-function nextButtonClicked() {
-      fetcher.nextPage().then(data => {
+//-------------------------- Aggiungiamo gli Event Listeners ai bottoni--------------------------//
+document.getElementById("previous-btn").addEventListener("click", () => {
+    fetcher.previousPage().then(data => {
         displayYugiOhCards(data);
         updatePageInfo();
+        updateButtons();
     });
-}
+});
+
+document.getElementById("next-btn").addEventListener("click", () => {
+    fetcher.nextPage().then(data => {
+        displayYugiOhCards(data);
+        updatePageInfo();
+        updateButtons();
+    });
+});
