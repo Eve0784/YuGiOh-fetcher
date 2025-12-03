@@ -19,8 +19,6 @@ class DataFetcher {
         console.log(fetcherData)
         this.next_page = fetcherData.meta.next_page;
         this.previous_page = fetcherData.meta.previous_page
-
-        this.current_page = fetcherData.meta.current_page;
         this.total_pages = fetcherData.meta.total_pages;
 
         // Calculate current page based on previous_page_offset
@@ -33,8 +31,6 @@ class DataFetcher {
         } else {
             this.current_page = 1;
         }
-
-
         return fetcherData.data;
     }
 
