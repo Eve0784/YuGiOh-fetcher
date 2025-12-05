@@ -7,6 +7,8 @@ class DataFetcher {
         this.previous_page = null;
         this.current_page = 1;
         this.total_pages = 1;
+       // this.pages_remaining = 1;
+        
     }
     getData() {
         return fetch(this.cardYuGUrl)
@@ -20,17 +22,21 @@ class DataFetcher {
         this.next_page = fetcherData.meta.next_page;
         this.previous_page = fetcherData.meta.previous_page
         this.total_pages = fetcherData.meta.total_pages;
+        //this.pages_remaining = fetcherData.meta.pages_remaining;
+        this.next_page_offset = fetcherData.meta.next_page_offset;
 
-        // Calculate current page based on previous_page_offset
-        // let prevOffset = fetcherData.meta.previous_page_offset ?? -this.num;
-        // this.current_page = Math.floor((prevOffset + this.num) / this.num) + 1;
+        //Calcolare la pagina corrente in base alle pagine rimanenti
+        // this.current_page = this.total_pages -  this.pages_remaining  + 1;
 
-        // Alternative calculation
-        if (this.previous_page) {
-            this.current_page = (fetcherData.meta.previous_page_offset / this.num) + 2;
-        } else {
-            this.current_page = 1;
-        }
+        // Calcolare la pagina corrente in base al next offset
+        this.current_page = this.next_page_offset / this.num;
+
+        // calcolo alternativo della pagina corrente
+        // if (this.previous_page) {
+        //     this.current_page = (fetcherData.meta.previous_page_offset / this.num) + 2;
+        // } else {
+        //     this.current_page = 1;
+        // }
         return fetcherData.data;
     }
 
